@@ -1,0 +1,6 @@
+{
+  "modelo_m": 10.5,
+  "modelo_b": 97.5,
+  "modelo_pwm_min": 140,
+  "px_por_cm": 10.0
+}
