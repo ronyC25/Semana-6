@@ -37,14 +37,19 @@ Write-Host "==============================================="
 Write-Host "Instalacion de $ProjectName (Windows)"
 Write-Host "==============================================="
 
-if (Command-Exists "python3") {
-    $PythonCmd = "python3"
+$PythonCmd = $null
+foreach ($cmd in @("python", "py", "python3")) {
+    if (Command-Exists $cmd) {
+        $ver = & $cmd --version 2>&1
+        if ($LASTEXITCODE -eq 0 -and $ver -like "*Python*") {
+            $PythonCmd = $cmd
+            break
+        }
+    }
 }
-elseif (Command-Exists "python") {
-    $PythonCmd = "python"
-}
-else {
-    Write-Error "No se encontro Python. Por favor instala Python 3.7 o superior."
+
+if (-not $PythonCmd) {
+    Write-Error "No se encontro un ejecutable de Python valido. Instala Python o agregalo al PATH."
     exit 1
 }
 
