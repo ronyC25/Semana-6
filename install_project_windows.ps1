@@ -123,67 +123,65 @@ else {
 $RequiredFiles = @($MainScript, $ModelFile)
 foreach ($file in $RequiredFiles) {
     if (Test-Path $file) {
-        Write-Success "✓ $file encontrado"
+        Write-Success "[OK] $file encontrado"
     }
     else {
         if ($file -eq $ModelFile) {
-            Write-Warning "⚠️ $file no encontrado. La detección de IA no funcionará sin el modelo.
-                 Puedes descargar un modelo YOLOv8 compatible desde https://github.com/ultralytics/ultralytics/releases"
+            Write-Warning "[WARN] $file no encontrado. La deteccion de IA no funcionara sin el modelo."
         }
         else {
-            Write-Error "❌ $file no encontrado. La aplicación no funcionará sin este archivo."
+            Write-Error "[FAIL] $file no encontrado. La aplicacion no funcionara sin este archivo."
         }
     }
 }
 
 # Verificar si el directorio dataset existe
 if (Test-Path $DatasetDir) {
-    Write-Success "✓ Directorio de dataset '$DatasetDir' encontrado"
+    Write-Success "[OK] Directorio de dataset '$DatasetDir' encontrado"
 }
 else {
-    Write-Warning "⚠️ Directorio de dataset '$DatasetDir' no encontrado. Se creará al ejecutar la aplicación."
+    Write-Warning "[WARN] Directorio de dataset '$DatasetDir' no encontrado. Se creara al ejecutar la aplicacion."
 }
 
-# Verificar si el archivo de calibración existe
+# Verificar si el archivo de calibracion existe
 if (Test-Path $CalibrationFile) {
-    Write-Success "✓ Archivo de calibración '$CalibrationFile' encontrado"
+    Write-Success "[OK] Archivo de calibracion '$CalibrationFile' encontrado"
 }
 else {
-    Write-Warning "⚠️ Archivo de calibración '$CalibrationFile' no encontrado. Se usarán valores por defecto al ejecutar la aplicación."
+    Write-Warning "[WARN] Archivo de calibracion '$CalibrationFile' no encontrado. Se usaran valores por defecto."
 }
 
 # Hacer el script principal ejecutable (Windows)
 if (Test-Path $MainScript) {
-    # En Windows, no necesitamos chmod, pero podemos verificar las propiedades del archivo
     Write-Success "Script principal $MainScript listo para ejecutar"
 }
 else {
     Write-Error "Script principal $MainScript no encontrado"
 }
 
-# Mostrar comandos útiles
-Write-Success "\n==============================================="
-Write-Host "Instalación completada con éxito."
+# Mostrar comandos utiles
+Write-Success "`n==============================================="
+Write-Host "Instalacion completada con exito."
 Write-Host ""
-Write-Host "Comandos útiles:"
+Write-Host "Comandos utiles:"
 Write-Host "  Activar entorno virtual: $VenvDir\Scripts\activate.bat"
 Write-Host "  Desactivar entorno virtual: deactivate"
-Write-Host "  Ejecutar aplicación: $VenvDir\Scripts\python.exe $MainScript"
+Write-Host "  Ejecutar aplicacion: $VenvDir\Scripts\python.exe $MainScript"
 Write-Host ""
 Write-Host "Archivos importantes:"
 Write-Host "  Main application: $MainScript"
-Write-Host "  Environment: $VenvDir\" (con todos los scripts en Scripts\)
+Write-Host "  Environment: $VenvDir"
 Write-Host "  Requirements: $RequirementsFile"
 Write-Host ""
-Write-Host "Para más información, consulta la documentación en GUIA_INSTALACION.md"
+Write-Host "Para mas informacion, consulta la documentacion en GUIA_INSTALACION.md"
 Write-Host "==============================================="
 
-# Verificar si se puede importar la aplicación
-Write-Success "\nVerificando compatibilidad de la aplicación..."
+# Verificar si se puede importar la aplicacion
+Write-Success "`nVerificando compatibilidad de la aplicacion..."
 try {
-    & "$VenvDir\Scripts\python.exe" -c "import customtkinter, serial, cv2, ultralytics, torch, psutil, matplotlib; print('✓ Todas las dependencias importadas correctamente')"
+    & "$VenvDir\Scripts\python.exe" -c "import customtkinter, serial, cv2, ultralytics, torch, psutil, matplotlib; print('Todas las dependencias importadas correctamente')"
     if ($LASTEXITCODE -ne 0) {
-        Write-Error "Algunos módulos fallaron al importarse. Por favor verifica la instalación."
+        Write-Error "Algunos modulos fallaron al importarse. Por favor verifica la instalacion."
         exit 1
     }
 }
@@ -192,4 +190,5 @@ catch {
     exit 1
 }
 
-Write-Success "¡Instalación completada! Ya puedes ejecutar la aplicación con: $VenvDir\Scripts\python.exe $MainScript"
+Write-Success "Instalacion completada! Ya puedes ejecutar la aplicacion con: $VenvDir\Scripts\python.exe $MainScript"
+
