@@ -1,17 +1,58 @@
 # Guía de Instalación de Dependencias
 
-Esta guía te explicará cómo ejecutar los scripts de instalación (`install.sh` y `install.bat`) que instalan las librerías necesarias para ejecutar tu programa `interface_brazo.py`.
+Esta guía te explicará cómo ejecutar los scripts de instalación que instalan las librerías necesarias para ejecutar tu programa `interface_brazo.py`.
 
 El código requiere de las siguientes librerías principales:
 - `pyserial`: Para la comunicación por puerto serie con el ESP32.
 - `opencv-python` (`cv2`): Para el manejo de la cámara web.
 - `ultralytics`: Para la detección de objetos usando YOLOv8.
 - `torch`, `torchvision`, `torchaudio`: Redes neuronales (backend de YOLO).
+- `customtkinter`: Interfaz gráfica de usuario.
+- `Pillow`: Manejo de imágenes.
+- `psutil`: Monitoreo del sistema.
+- `matplotlib`: Gráficos y visualización.
 
 ---
 
-## Opción 1: Usar el script de Windows (`install.bat`) - Recomendado ⭐
-Dado que estás en el sistema operativo Windows, esta es la forma más rápida y nativa.
+## Opción 1: Usar el script de PowerShell (`install_project_windows.ps1`) - Recomendado ⭐
+Dado que estás en Windows, esta es la forma más rápida y nativa.
+
+**Método A (Desde PowerShell):**
+1. Abre **PowerShell** (como Administrador si es necesario).
+2. Navega hasta la carpeta de tu proyecto:
+   ```powershell
+   cd "e:\Estudios Rony\9no SEMESTRE\Robotica 2\Semana 6"
+   ```
+3. Configura la política de ejecución (una sola vez):
+   ```powershell
+   Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser -Force
+   ```
+4. Ejecuta el script escribiendo:
+   ```powershell
+   .\install_project_windows.ps1
+   ```
+
+**Método B (Desde el Explorador de Archivos):**
+1. Abre tu **Explorador de Archivos de Windows**.
+2. Navega hasta la carpeta de tu proyecto: `e:\Estudios Rony\9no SEMESTRE\Robotica 2\Semana 6\`.
+3. Haz doble clic sobre el archivo `install_project_windows.ps1` (si tienes PowerShell configurado para abrir archivos `.ps1`).
+4. Se abrirá una ventana de consola de PowerShell mostrando el progreso de la instalación.
+
+**Método C (Desde VS Code Terminal):**
+1. Abre tu terminal de PowerShell en VS Code (o externamente).
+2. Asegúrate de estar en la ruta correcta:
+   ```powershell
+   cd "e:\Estudios Rony\9no SEMESTRE\Robotica 2\Semana 6"
+   ```
+3. Ejecuta el script escribiendo:
+   ```powershell
+   .\install_project_windows.ps1
+   ```
+
+---
+
+## Opción 2: Usar el script de Windows (`install.bat`) - Legacy
+Si prefieres un script CMD clásico o usas una configuración de terminal diferente, puedes utilizar el script `.bat`.
 
 **Método A (Desde el Explorador de Archivos):**
 1. Abre tu Explorador de Archivos de Windows.
@@ -21,15 +62,18 @@ Dado que estás en el sistema operativo Windows, esta es la forma más rápida y
 
 **Método B (Desde PowerShell / VS Code Terminal):**
 1. Abre tu terminal de PowerShell en VS Code (o externamente).
-2. Asegúrate de estar en la ruta correcta (`cd "e:\Estudios Rony\9no SEMESTRE\Robotica 2\Semana 6"`).
-3. Ejecuta el script escribiendo: 
+2. Asegúrate de estar en la ruta correcta:
+   ```powershell
+   cd "e:\Estudios Rony\9no SEMESTRE\Robotica 2\Semana 6"
+   ```
+3. Ejecuta el script escribiendo:
    ```powershell
    .\install.bat
    ```
 
 ---
 
-## Opción 2: Usar el script Bash (`install.sh`)
+## Opción 3: Usar el script Bash (`install.sh`)
 Si prefieres usar un entorno Bash (por ejemplo, si usas **Git Bash** en Windows), puedes utilizar el script `.sh`.
 
 1. Abre tu terminal **Git Bash**.
